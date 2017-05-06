@@ -1,0 +1,29 @@
+{
+    "manifest_version": 2,
+    "name": "Gradenotifier",
+    "version": "1.0",
+    "description": "Chrome extension component for Gradenotifier",
+    "author": "Gradenotifier",
+    "homepage_url": "https://gradenotifier.com/teachers",
+
+    "icons": { 
+        "16": "icon16.png",
+        "152": "icon152.png"
+    },
+
+    "permissions": ["activeTab"],
+
+    "background": {
+        "scripts": ["sender.js"],
+        "persistent": false
+    },
+
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js":      ["jquery.js", "content.js"]
+    }],
+
+    "browser_action": {
+        "default_title": "Grade Notifier"
+    } 
+}
