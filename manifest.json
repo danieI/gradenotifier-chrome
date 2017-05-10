@@ -1,29 +1,23 @@
-{
-    "manifest_version": 2,
-    "name": "Gradenotifier",
-    "version": "1.0",
-    "description": "Chrome extension component for Gradenotifier",
-    "author": "Gradenotifier",
-    "homepage_url": "https://gradenotifier.com/teachers",
+ {
+     "manifest_version": 2,
+     "name":    "Grade Notifier",
+     "version": "1.0",
+     "description": "Chrome extension component for Grade Notifier",
 
-    "icons": { 
-        "16": "icon16.png",
-        "152": "icon152.png"
-    },
+     "background": {
+     "persistent": false,
+     "scripts": ["event.js"]
+   },
 
-    "permissions": ["activeTab"],
+     "browser_action": {
+         "default_title": "Grade Notifier"
+     },
 
-    "background": {
-        "scripts": ["sender.js"],
-        "persistent": false
-    },
+     "author": "Grade Notifier Inc.",
 
-    "content_scripts": [{
-        "matches": ["<all_urls>"],
-        "js":      ["jquery.js", "content.js"]
-    }],
-
-    "browser_action": {
-        "default_title": "Grade Notifier"
-    } 
-}
+     "content_scripts": [{
+         "matches": ["<all_urls>"],
+         "js":      ["jquery.js", "content.js"]
+     }],
+     "permissions": ["activeTab", "storage"]
+ }
