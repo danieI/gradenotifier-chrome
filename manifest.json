@@ -7,7 +7,7 @@
     "permissions": ["activeTab"],
 
     "content_scripts": [{
-        "matches": ["https://schoollogic.bsd.ca/teacherlogic/*"],
+        "matches": ["<all_urls>"],
         "js":      ["jquery.js", "content.js"]
     }],
 

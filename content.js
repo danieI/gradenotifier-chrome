@@ -9,14 +9,17 @@ function sendGrades() {
 
     // extract student number contained in brackets from innerHTML ^
     var matches = /\(([^)]+)\)/.exec(workingId);
-    workingId = (matches != null) ? matches[1] : "cut off";
+    workingId = (matches != null) ? matches[1] : "00000";
 
     var workingGrade = workingRow.getElementsByTagName('input')[1].value;
-    workingGrade = Math.round(workingGrade / outOf * 100);
+    workingGrade = Math.round(workingGrade / outOf * 100).toString();
 
     students[workingId] = workingGrade;
   }
-  chrome.runtime.sendMessage({data: students});
+  console.log(students);
+  // chrome.runtime.sendMessage({data: students});
+  $.post("https://gradenotifier.com/sms/send", { 
+    data: JSON.stringify(students)});
 }
 
 body = $('[name="GradeTaskBody"]')[0].contentWindow.document;
