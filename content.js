@@ -16,8 +16,7 @@ function sendGrades() {
 
     students[workingId] = workingGrade;
   }
-  students = JSON.stringify(students);
-  chrome.runtime.sendMessage({data: students})
+  chrome.runtime.sendMessage({data: students});
 }
 
 body = $('[name="GradeTaskBody"]')[0].contentWindow.document;
