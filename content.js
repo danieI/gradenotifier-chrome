@@ -1,3 +1,20 @@
+var partialNumbers = {}
+
+function loadIncomplete(incompleteName){
+  chrome.storage.sync.get(incompleteName, function(obj){
+    partialNumbers[incompleteName] = obj[incompleteName] || requestNumber(incompleteName);
+  });
+}
+
+function requestNumber(incomplete) {
+	var complete = prompt("Enter complete student number for " + incomplete);
+  var data = {[incomplete]: complete};
+  chrome.storage.sync.set(data, function() {
+  console.log("Linked '" + incomplete + "' to '" + complete + "'.");
+});
+	return complete;
+}
+
 function sendGrades() {
   var students = {};
   var studentCount = body.getElementById('StudentCount').value;
