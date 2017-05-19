@@ -7,24 +7,18 @@ function sendGrades() {
     var workingRow = body.getElementsByTagName('tr').item(i);
     var workingId = workingRow.getElementsByTagName('td')[0].innerHTML;
 
-    // extract student number contained in brackets from innerHTML ^
-    var matches = /\(([^)]+)\)/.exec(workingId);
-    workingId = (matches != null) ? matches[1] : "00000";
+    var matches = /\(([^)]+)\)/.exec(workingId); // remove enclosing brackets
+    workingId = (matches != null) ? matches[1] : "000"; 
 
     var workingGrade = workingRow.getElementsByTagName('input')[1].value;
     workingGrade = Math.round(workingGrade / outOf * 100).toString();
-
     students[workingId] = workingGrade;
   }
-  console.log(students);
-  // chrome.runtime.sendMessage({data: students});
-  $.post("https://gradenotifier.com/sms/send", { 
-    data: JSON.stringify(students)});
+  chrome.runtime.sendMessage({data: students});
 }
 
 body = $('[name="GradeTaskBody"]')[0].contentWindow.document;
 footer = $('[name="GradeTaskBottom"]')[0].contentWindow.document;
 
 footer.getElementById("Submit1").addEventListener("click", function () {
-  sendGrades();
-});
+  sendGrades(); });
