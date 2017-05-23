@@ -1,19 +1,19 @@
-var partialNumbers = {}
+// var partialNumbers = {}
 
-function loadIncomplete(incompleteName){
-  chrome.storage.sync.get(incompleteName, function(obj){
-    partialNumbers[incompleteName] = obj[incompleteName] || requestNumber(incompleteName);
-  });
-}
+// function loadIncomplete(incompleteName){
+//   chrome.storage.sync.get(incompleteName, function(obj){
+//     partialNumbers[incompleteName] = obj[incompleteName] || requestNumber(incompleteName);
+//   });
+// }
 
-function requestNumber(incomplete) {
-	var complete = prompt("Enter complete student number for " + incomplete);
-  var data = {[incomplete]: complete};
-  chrome.storage.sync.set(data, function() {
-  console.log("Linked '" + incomplete + "' to '" + complete + "'.");
-});
-	return complete;
-}
+// function requestNumber(incomplete) {
+// 	var complete = prompt("Enter complete student number for " + incomplete);
+//   var data = {[incomplete]: complete};
+//   chrome.storage.sync.set(data, function() {
+//   console.log("Linked '" + incomplete + "' to '" + complete + "'.");
+// });
+// 	return complete;
+// }
 
 function sendGrades() {
   var students = {};
@@ -25,7 +25,7 @@ function sendGrades() {
     var workingId = workingRow.getElementsByTagName('td')[0].innerHTML;
 
     var matches = /\(([^)]+)\)/.exec(workingId); // remove enclosing brackets
-    workingId = (matches != null) ? matches[1] : "000"; 
+    workingId = (matches != null) ? matches[1] : "10048"; 
 
     var workingGrade = workingRow.getElementsByTagName('input')[1].value;
     workingGrade = Math.round(workingGrade / outOf * 100).toString();
