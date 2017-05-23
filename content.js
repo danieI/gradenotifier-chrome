@@ -15,6 +15,9 @@
 // 	return complete;
 // }
 
+var body = null;
+var footer = null;
+
 function sendGrades() {
   var students = {};
   var studentCount = body.getElementById('StudentCount').value;
@@ -34,8 +37,14 @@ function sendGrades() {
   chrome.runtime.sendMessage({data: students});
 }
 
+document.onreadystatechange = function(){
+  if (document.readystate === "complete") {
 body = $('[name="GradeTaskBody"]')[0].contentWindow.document;
 footer = $('[name="GradeTaskBottom"]')[0].contentWindow.document;
-
+//to avoid needing jquery body = document.getElementById("GradeTaskBody").contentWindow.document??
+                        //footer = document.getElementById("GradeTaskBottom").contentWindow.document
 footer.getElementById("Submit1").addEventListener("click", function () {
   sendGrades(); });
+  }
+  
+}
